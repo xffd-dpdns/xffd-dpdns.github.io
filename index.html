@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>实用工具箱 - 您的数字工具集</title>
+    <meta name="description" content="一个实用的网络工具集合，包括计算器、单位转换器和文本格式化工具">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 页头与导航 -->
+    <header role="banner" aria-label="主要页头">
+        <div class="container">
+            <h1>实用工具箱</h1>
+            <p class="subtitle">您的数字工具集</p>
+        </div>
+    </header>
+
+    <!-- 导航菜单 -->
+    <nav role="navigation" aria-label="主导航" class="nav-container">
+        <div class="container">
+            <ul class="nav-list">
+                <li><a href="#calculator" class="nav-link">计算器</a></li>
+                <li><a href="#unit-converter" class="nav-link">单位转换</a></li>
+                <li><a href="#text-formatter" class="nav-link">文本格式化</a></li>
+                <li><a href="#games" class="nav-link">小游戏</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 主要内容区域 -->
+    <main role="main" class="main-content">
+        <div class="container">
+            <!-- 计算器部分 -->
+            <section id="calculator" class="utility-section" aria-labelledby="calculator-heading">
+                <h2 id="calculator-heading" class="section-heading">计算器</h2>
+                <div class="calculator-container">
+                    <div class="calculator-display">
+                        <input type="text" id="calc-display" class="calc-display" aria-live="polite" readonly>
+                    </div>
+                    <div class="calculator-buttons">
+                        <button class="calc-btn" data-value="clear">C</button>
+                        <button class="calc-btn" data-value="delete">DEL</button>
+                        <button class="calc-btn" data-value="(">(</button>
+                        <button class="calc-btn" data-value=")">)</button>
+                        <button class="calc-btn" data-value="7">7</button>
+                        <button class="calc-btn" data-value="8">8</button>
+                        <button class="calc-btn" data-value="9">9</button>
+                        <button class="calc-btn operator" data-value="/">÷</button>
+                        <button class="calc-btn" data-value="4">4</button>
+                        <button class="calc-btn" data-value="5">5</button>
+                        <button class="calc-btn" data-value="6">6</button>
+                        <button class="calc-btn operator" data-value="*">×</button>
+                        <button class="calc-btn" data-value="1">1</button>
+                        <button class="calc-btn" data-value="2">2</button>
+                        <button class="calc-btn" data-value="3">3</button>
+                        <button class="calc-btn operator" data-value="-">-</button>
+                        <button class="calc-btn" data-value="0">0</button>
+                        <button class="calc-btn" data-value=".">.</button>
+                        <button class="calc-btn equals" data-value="=">=</button>
+                        <button class="calc-btn operator" data-value="+">+</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 单位转换器部分 -->
+            <section id="unit-converter" class="utility-section" aria-labelledby="converter-heading">
+                <h2 id="converter-heading" class="section-heading">单位转换器</h2>
+                <div class="converter-container">
+                    <div class="converter-controls">
+                        <div class="converter-row">
+                            <label for="converter-type">转换类型：</label>
+                            <select id="converter-type" aria-label="选择转换类型">
+                                <option value="length">长度</option>
+                                <option value="weight">重量</option>
+                                <option value="temperature">温度</option>
+                                <option value="volume">体积</option>
+                            </select>
+                        </div>
+                        
+                        <div class="converter-row">
+                            <div class="converter-input-group">
+                                <label for="input-value">从：</label>
+                                <input type="number" id="input-value" aria-label="输入值">
+                                <select id="from-unit" aria-label="选择源单位"></select>
+                            </div>
+                            
+                            <button id="swap-units" aria-label="交换单位" class="swap-btn">⇄</button>
+                            
+                            <div class="converter-input-group">
+                                <label for="output-value">到：</label>
+                                <input type="number" id="output-value" aria-label="输出值" readonly>
+                                <select id="to-unit" aria-label="选择目标单位"></select>
+                            </div>
+                        </div>
+                        
+                        <button id="convert-btn" class="convert-btn">转换</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 文本格式化器部分 -->
+            <section id="text-formatter" class="utility-section" aria-labelledby="formatter-heading">
+                <h2 id="formatter-heading" class="section-heading">文本格式化</h2>
+                <div class="formatter-container">
+                    <div class="formatter-controls">
+                        <div class="formatter-row">
+                            <button id="format-upper" class="format-btn">全部大写</button>
+                            <button id="format-lower" class="format-btn">全部小写</button>
+                            <button id="format-title" class="format-btn">标题格式</button>
+                            <button id="format-clear" class="format-btn">清空</button>
+                        </div>
+                        
+                        <div class="formatter-text-container">
+                            <div class="formatter-col">
+                                <label for="input-text">输入文本：</label>
+                                <textarea id="input-text" rows="10" aria-label="用于格式化的输入文本"></textarea>
+                            </div>
+                            
+                            <div class="formatter-col">
+                                <label for="output-text">格式化后文本：</label>
+                                <textarea id="output-text" rows="10" aria-label="格式化后的输出文本" readonly></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="formatter-stats">
+                            <p><strong>字符数：</strong> <span id="char-count">0</span></p>
+                            <p><strong>单词数：</strong> <span id="word-count">0</span></p>
+                            <p><strong>行数：</strong> <span id="line-count">0</span></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 小游戏部分 -->
+            <section id="games" class="utility-section" aria-labelledby="games-heading">
+                <h2 id="games-heading" class="section-heading">小游戏</h2>
+                <div class="games-container">
+                    <!-- 2048游戏 -->
+                    <div class="game-card">
+                        <h3 class="game-title">2048</h3>
+                        <div id="game-2048" class="game-container">
+                            <div class="game-info">
+                                <div class="score-container">
+                                    <div class="score-label">分数</div>
+                                    <div id="score-2048" class="score">0</div>
+                                </div>
+                                <div class="best-container">
+                                    <div class="best-label">最高分</div>
+                                    <div id="best-2048" class="best">0</div>
+                                </div>
+                            </div>
+                            <div class="game-board" id="board-2048"></div>
+                            <div class="game-controls">
+                                <button id="new-game-2048" class="game-btn">新游戏</button>
+                                <div class="game-instructions">
+                                    <p>使用方向键移动方块，合并相同数字，获得2048！</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 记忆翻牌游戏 -->
+                    <div class="game-card">
+                        <h3 class="game-title">记忆翻牌</h3>
+                        <div id="memory-game" class="game-container">
+                            <div class="memory-info">
+                                <div class="moves-container">
+                                    <div class="moves-label">步数</div>
+                                    <div id="moves" class="moves">0</div>
+                                </div>
+                                <div class="time-container">
+                                    <div class="time-label">时间</div>
+                                    <div id="time" class="time">00:00</div>
+                                </div>
+                            </div>
+                            <div class="memory-board" id="memory-board"></div>
+                            <div class="game-controls">
+                                <button id="new-game-memory" class="game-btn">新游戏</button>
+                                <select id="difficulty">
+                                    <option value="easy">简单 (4x4)</option>
+                                    <option value="medium">中等 (6x6)</option>
+                                    <option value="hard">困难 (8x8)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 数字猜谜游戏 -->
+                    <div class="game-card">
+                        <h3 class="game-title">数字猜谜</h3>
+                        <div id="guess-game" class="game-container">
+                            <div class="guess-info">
+                                <div class="guess-range">
+                                    <p>猜一个数字：1 - 100</p>
+                                </div>
+                                <div class="guess-stats">
+                                    <p>已猜次数：<span id="guess-count">0</span></p>
+                                </div>
+                            </div>
+                            <div class="guess-input">
+                                <input type="number" id="guess-number" min="1" max="100" placeholder="输入你的猜测">
+                                <button id="submit-guess" class="game-btn">提交猜测</button>
+                            </div>
+                            <div class="guess-feedback" id="guess-feedback"></div>
+                            <div class="game-controls">
+                                <button id="new-game-guess" class="game-btn">新游戏</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer role="contentinfo" class="page-footer">
+        <div class="container">
+            <p>&copy; 2025 实用工具箱. 保留所有权利。</p>
+            <p> 作者:朱海潮,和他的AI</p>
+            <p> 联系方式:17300955063zhc@gmail.com</p>
+            <p>一个实用的网络工具集合。</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="app.js"></script>
+</body>
+</html>
