@@ -752,28 +752,29 @@ function initializeEventListeners() {
     console.log('Initializing event listeners...');
     
     // 文件上传功能
-    const fileInput = document.getElementById('file-input');
-    const uploadBtn = document.getElementById('upload-btn');
+    //const fileInput = document.getElementById('file-input');
+    //const uploadBtn = document.getElementById('upload-btn');
     
-    console.log('File input element:', fileInput);
-    console.log('Upload button element:', uploadBtn);
+    //console.log('File input element:', fileInput);
+    //console.log('Upload button element:', uploadBtn);
     
     // 点击上传按钮触发文件选择
-    if (uploadBtn && fileInput) {
-        uploadBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            console.log('Upload button clicked, triggering file input...');
-            fileInput.click();
-        });
+    //if (uploadBtn && fileInput) {
+        //uploadBtn.addEventListener('click', function(e) {
+            //e.preventDefault();
+            //console.log('Upload button clicked, triggering file input...');
+            //fileInput.click();
+        //});
         
         // 文件选择事件
-        fileInput.addEventListener('change', function(e) {
-            console.log('File selected:', e.target.files[0]);
-            handleFileUpload(e.target.files[0]);
-        });
-    } else {
-        console.error('File input or upload button not found!');
+        //fileInput.addEventListener('change', function(e) {
+            //console.log('File selected:', e.target.files[0]);
+            //handleFileUpload(e.target.files[0]);
+        //});
+    //} else {
+        //console.error('File input or upload button not found!');
     }
+
 }
 
 // 切换头部属性编辑区域显示/隐藏
@@ -1255,4 +1256,5 @@ function clearCanvas() {
 // 生成唯一ID
 function generateId() {
     return `component-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+
 }
