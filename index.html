@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图形化HTML开发工具</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 顶部工具栏 -->
+        <header class="toolbar">
+            <h1>图形化HTML开发工具</h1>
+            <div class="toolbar-buttons">
+                <button id="export-btn">导出代码</button>
+                <button id="clear-btn">清空画布</button>
+                <button id="header-btn" class="tooltip" data-tooltip="编辑头部属性">📄</button>
+                </label>
+            </div>
+        </header>
+
+        <!-- 头部属性编辑区域 -->
+        <section id="header-editor" class="code-editor-panel" style="display: none;">
+            <div class="code-editor-header">
+                <h2>📄 头部属性编辑</h2>
+            </div>
+            <div class="code-editor-content">
+                <div class="code-editor" style="flex: 1;">
+                    <div class="code-editor-title">页面标题</div>
+                    <input type="text" id="page-title" placeholder="页面标题" value="图形化HTML开发工具" style="width: 100%; padding: 12px; border: none; font-size: 16px; font-weight: 600; background-color: var(--bg-secondary);">
+                </div>
+                <div class="code-editor" style="flex: 2;">
+                    <div class="code-editor-title">元标签</div>
+                    <textarea id="meta-tags" placeholder="在此输入元标签..." style="width: 100%; height: 100%; border: none; padding: 12px; font-family: 'Consolas', 'Monaco', monospace; font-size: 14px; resize: none;">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="图形化HTML开发工具">
+<meta name="keywords" content="HTML, CSS, JavaScript, 图形化开发">
+                    </textarea>
+                </div>
+            </div>
+        </section>
+
+        <!-- 主内容区域 -->
+        <main class="main-content">
+            <!-- 左侧组件库 -->
+            <aside class="components-panel">
+                <h2>组件库</h2>
+                <div class="component-library">
+                    <!-- 基础容器 -->
+                    <div class="component" draggable="true" data-type="div">
+                        <span>容器</span>
+                    </div>
+                    <div class="component" draggable="true" data-type="span">
+                        <span>行内容器</span>
+                    </div>
+                    
+                    <!-- 标题元素 -->
+                    <div class="component" draggable="true" data-type="h1">
+                        <span>标题1</span>
+                    </div>
+                    <div class="component" draggable="true" data-type="h2">
+                        <span>标题2</span>
+                    </div>
+                    <div class="component" draggable="true" data-type="h3">
+                        <span>标题3</span>
+                    </div>
+                    <div class="component" draggable="true" data-type="h4">
+                        <span>标题4</span>
+                    </div>
+                    <div class="component" draggable="true" data-type="h5">
+                        <span>标题5</span>
+                    </div>
+                    <div class="component" draggable="true" data-type="h6">
+                        <span>标题6</span>
+                    </div>
+                    
+                    <!-- 文本格式化 -->
+                    <div class="component" draggable="true" data-type="p">
+                        <span>段落</span>
+                    </div>
+                    <div class="component" draggable="true" data-type="strong">
+                        <span>加粗</span>
+                    </div>
+                    <div class="component" draggable="true" data-type="em">
+                        <span>斜体</span>
+                    </div>
+                    <div class="component" draggable="true" data-type="code">
+                        <span>代码</span>
+                    </div>
+                    <div class="component" draggable="true" data-type="u">
+                        <span>下划线</span>
+                    </div>
+                    <div class="component" draggable="true" data-type="s">
+                        <span>删除线</span>
+                    </div>
+                    
+                    <!-- 语义化容器 -->
+                    <div class="component" draggable="true" data-type="section">
+                        <span>区块</span>
+                    </div>
+                    <div class="component" draggable="true" data-type="article">
+                        <span>文章</span>
+                    </div>
+                    <div class="component" draggable="true" data-type="header">
+                        <span>页头</span>
+                    </div>
+                    <div class="component" draggable="true" data-type="footer">
+                        <span>页脚</span>
+                    </div>
+                    <div class="component" draggable="true" data-type="nav">
+                        <span>导航</span>
+                    </div>
+                    <div class="component" draggable="true" data-type="aside">
+                        <span>侧边栏</span>
+                    </div>
+                    <div class="component" draggable="true" data-type="main">
+                        <span>主内容</span>
+                    </div>
+                    
+                    <!-- 列表元素 -->
+                    <div class="component" draggable="true" data-type="ul">
+                        <span>无序列表</span>
+                    </div>
+                    <div class="component" draggable="true" data-type="ol">
+                        <span>有序列表</span>
+                    </div>
+                    <div class="component" draggable="true" data-type="li">
+                        <span>列表项</span>
+                    </div>
+                    
+                    <!-- 表格元素 -->
+                    <div class="component" draggable="true" data-type="table">
+                        <span>表格</span>
+                    </div>
+                    <div class="component" draggable="true" data-type="tr">
+                        <span>表格行</span>
+                    </div>
+                    <div class="component" draggable="true" data-type="td">
+                        <span>表格单元格</span>
+                    </div>
+                    <div class="component" draggable="true" data-type="th">
+                        <span>表头单元格</span>
+                    </div>
+                    
+                    <!-- 表单元素 -->
+                    <div class="component" draggable="true" data-type="form">
+                        <span>表单</span>
+                    </div>
+                    <div class="component" draggable="true" data-type="button">
+                        <span>按钮</span>
+                    </div>
+                    <div class="component" draggable="true" data-type="input">
+                        <span>输入框</span>
+                    </div>
+                    <div class="component" draggable="true" data-type="textarea">
+                        <span>文本域</span>
+                    </div>
+                    <div class="component" draggable="true" data-type="select">
+                        <span>下拉选择</span>
+                    </div>
+                    <div class="component" draggable="true" data-type="option">
+                        <span>选项</span>
+                    </div>
+                    <div class="component" draggable="true" data-type="label">
+                        <span>标签</span>
+                    </div>
+                    <div class="component" draggable="true" data-type="checkbox">
+                        <span>复选框</span>
+                    </div>
+                    <div class="component" draggable="true" data-type="radio">
+                        <span>单选框</span>
+                    </div>
+                    
+                    <!-- 多媒体元素 -->
+                    <div class="component" draggable="true" data-type="img">
+                        <span>图片</span>
+                    </div>
+                    <div class="component" draggable="true" data-type="audio">
+                        <span>音频</span>
+                    </div>
+                    <div class="component" draggable="true" data-type="video">
+                        <span>视频</span>
+                    </div>
+                    <div class="component" draggable="true" data-type="iframe">
+                        <span>嵌入框架</span>
+                    </div>
+                    
+                    <!-- 语义化元素 -->
+                    <div class="component" draggable="true" data-type="details">
+                        <span>详情</span>
+                    </div>
+                    <div class="component" draggable="true" data-type="summary">
+                        <span>摘要</span>
+                    </div>
+                    <div class="component" draggable="true" data-type="progress">
+                        <span>进度条</span>
+                    </div>
+                    <div class="component" draggable="true" data-type="meter">
+                        <span>度量条</span>
+                    </div>
+                    
+                    <!-- 链接元素 -->
+                    <div class="component" draggable="true" data-type="a">
+                        <span>链接</span>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- 中间编辑区域 -->
+            <section class="editor-panel">
+                <h2>编辑区域</h2>
+                <div id="canvas" class="canvas">
+                    <div class="canvas-hint">将左侧组件拖拽到此处</div>
+                </div>
+            </section>
+
+            <!-- 右侧属性编辑 -->
+            <aside class="properties-panel">
+                <h2>属性编辑</h2>
+                <div id="properties" class="properties">
+                    <div class="properties-hint">请选择一个组件进行编辑</div>
+                </div>
+            </aside>
+        </main>
+
+        <!-- 代码编辑区域 -->
+        <section class="code-editor-panel">
+            <div class="code-editor-header">
+                <h2>代码编辑</h2>
+            </div>
+            <div class="code-editor-content">
+                <div class="code-editor">
+                    <div class="code-editor-title">全局CSS</div>
+                    <textarea id="global-css" placeholder="在此输入全局CSS样式...">/* 全局样式 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+</textarea>
+                </div>
+                <div class="code-editor">
+                    <div class="code-editor-title">全局JavaScript</div>
+                    <textarea id="global-js" placeholder="在此输入全局JavaScript代码...">// 全局JavaScript代码
+</textarea>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
