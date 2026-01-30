@@ -1,0 +1,8 @@
+# staticman.yml 示例
+allowedFields: ["name", "email", "message", "postId"]
+requiredFields: ["name", "message", "postId"]
+branch: "main"
+format: "yml" # 对于Jekyll，yml格式更常见
+path: "_data/comments/{fields.postId}" # 核心：按帖子ID存入_data目录
+filename: "comment-{@timestamp}"
+moderation: true # 强烈建议开启审核
