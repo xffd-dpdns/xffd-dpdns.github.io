@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XFFD技术社区 - 首页</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><i class="fas fa-code"></i></div>
+                <div class="logo-text">XFFD技术社区</div>
+            </a>
+            
+            <div class="nav-links">
+                <a href="index.html" class="active"><i class="fas fa-home"></i> 首页</a>
+                <a href="forum.html"><i class="fas fa-comments"></i> 论坛</a>
+                <a href="topics.html"><i class="fas fa-tags"></i> 话题</a>
+                <a href="members.html"><i class="fas fa-users"></i> 成员</a>
+                <a href="about.html"><i class="fas fa-info-circle"></i> 关于</a>
+            </div>
+            
+            <div class="user-section">
+                <div class="user-avatar">XF</div>
+                <span>访客用户</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <main class="main-content">
+        <!-- 英雄区域 -->
+        <div class="page-header">
+            <h1><i class="fas fa-rocket"></i> 欢迎来到XFFD技术社区</h1>
+            <p>一个专注于技术分享、开源协作和开发者成长的交流平台</p>
+        </div>
+
+        <!-- 轮播图 -->
+        <div class="card">
+            <div class="carousel" id="homeCarousel">
+                <div class="carousel-slide active">
+                    <div class="carousel-content" style="
+                        background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                        url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+                        background-size: cover;
+                        background-position: center;
+                        border-radius: var(--radius);
+                        padding: 80px 40px;
+                        color: white;
+                        text-align: center;
+                    ">
+                        <h2 style="font-size: 2.5rem; margin-bottom: 20px;">探索前沿技术</h2>
+                        <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto;">
+                            与社区成员一起探讨最新技术趋势，分享编程经验
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 特性介绍 -->
+        <div class="grid grid-3">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <i class="fas fa-comments" style="color: #4fc3f7;"></i>
+                        <span>技术讨论</span>
+                    </div>
+                </div>
+                <p>在友好的氛围中探讨编程问题、架构设计和开发实践。</p>
+                <a href="forum.html" class="btn btn-primary mt-2" style="display: inline-flex;">
+                    进入论坛 <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <i class="fas fa-code-branch" style="color: #64ffda;"></i>
+                        <span>开源协作</span>
+                    </div>
+                </div>
+                <p>参与开源项目，与开发者一起构建更好的技术生态。</p>
+                <a href="topics.html" class="btn btn-primary mt-2" style="display: inline-flex;">
+                    查看项目 <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <i class="fas fa-users" style="color: #ff6b6b;"></i>
+                        <span>社区成员</span>
+                    </div>
+                </div>
+                <p>结识志同道合的开发者，建立有价值的技术连接。</p>
+                <a href="members.html" class="btn btn-primary mt-2" style="display: inline-flex;">
+                    认识成员 <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- 最新动态 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <i class="fas fa-newspaper" style="color: #2979ff;"></i>
+                    <span>最新动态</span>
+                </div>
+            </div>
+            <div class="grid grid-2">
+                <div>
+                    <h3><i class="fas fa-bullhorn"></i> 社区公告</h3>
+                    <ul style="margin-top: 15px; padding-left: 20px;">
+                        <li style="margin-bottom: 10px;">• XFFD社区正式上线</li>
+                        <li style="margin-bottom: 10px;">• 第一届技术分享会开始报名</li>
+                        <li style="margin-bottom: 10px;">• 开源项目协作计划启动</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3><i class="fas fa-chart-line"></i> 社区数据</h3>
+                    <div style="margin-top: 15px;">
+                        <p><i class="fas fa-users"></i> 当前成员：<strong>1,234</strong> 人</p>
+                        <p><i class="fas fa-comments"></i> 讨论帖子：<strong>567</strong> 篇</p>
+                        <p><i class="fas fa-code"></i> 开源项目：<strong>89</strong> 个</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 快速链接 -->
+        <div class="card text-center">
+            <h2 class="mb-2">立即加入社区</h2>
+            <p class="mb-3">开始你的技术交流之旅</p>
+            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <a href="forum.html" class="btn btn-primary">
+                    <i class="fas fa-comments"></i> 进入论坛
+                </a>
+                <a href="members.html" class="btn btn-secondary">
+                    <i class="fas fa-user-plus"></i> 注册会员
+                </a>
+                <a href="about.html" class="btn btn-secondary">
+                    <i class="fas fa-book"></i> 了解详情
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">XFFD技术社区</div>
+            <div class="footer-links">
+                <a href="index.html"><i class="fas fa-home"></i> 首页</a>
+                <a href="forum.html"><i class="fas fa-comments"></i> 论坛</a>
+                <a href="about.html"><i class="fas fa-info-circle"></i> 关于</a>
+                <a href="#"><i class="fas fa-envelope"></i> 联系</a>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2023 XFFD技术社区. 保留所有权利. 
+            <span style="margin-left: 10px;">当前页面: 首页</span>
+        </div>
+    </footer>
+
+    <script>
+        // 简单的轮播图功能
+        let currentSlide = 0;
+        const slides = [
+            {
+                title: "探索前沿技术",
+                desc: "与社区成员一起探讨最新技术趋势，分享编程经验",
+                bg: "linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80')"
+            },
+            {
+                title: "开源协作开发",
+                desc: "参与开源项目，与全球开发者共同构建技术生态",
+                bg: "linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1555099962-4199c345e5dd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80')"
+            },
+            {
+                title: "技术交流学习",
+                desc: "在友好的社区氛围中解决技术难题，共同成长",
+                bg: "linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80')"
+            }
+        ];
+
+        function rotateCarousel() {
+            const carousel = document.getElementById('homeCarousel');
+            if (!carousel) return;
+            
+            currentSlide = (currentSlide + 1) % slides.length;
+            const slide = slides[currentSlide];
+            
+            const slideContent = carousel.querySelector('.carousel-slide');
+            slideContent.style.background = slide.bg;
+            slideContent.querySelector('h2').textContent = slide.title;
+            slideContent.querySelector('p').textContent = slide.desc;
+        }
+
+        // 每5秒切换一次轮播图
+        setInterval(rotateCarousel, 5000);
+        
+        // 页面加载完成提示
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('XFFD技术社区首页已加载');
+        });
+    </script>
+</body>
+</html>
