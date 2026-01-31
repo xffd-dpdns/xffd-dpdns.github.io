@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于我们 - XFFD技术社区</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 40px auto;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+        
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            flex-direction: row;
+        }
+        
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        
+        .timeline-content {
+            flex: 1;
+            padding: 20px;
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-right: 40px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: 40px;
+        }
+        
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--white);
+            transform: rotate(45deg);
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            right: -10px;
+            border-right: 2px solid var(--gray-light);
+            border-top: 2px solid var(--gray-light);
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -10px;
+            border-left: 2px solid var(--gray-light);
+            border-bottom: 2px solid var(--gray-light);
+        }
+        
+        .timeline-dot {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+            border: 4px solid var(--white);
+            box-shadow: 0 0 0 4px var(--primary-color);
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .team-member {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .team-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            font-weight: bold;
+        }
+        
+        .team-name {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+        
+        .team-role {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--gray-light);
+            padding-bottom: 20px;
+        }
+        
+        .faq-question {
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+        
+        .faq-answer {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+        
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: var(--white);
+            border-radius: var(--radius);
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gray-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 20px;
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-item {
+                flex-direction: row !important;
+            }
+            
+            .timeline-content {
+                margin-left: 60px !important;
+                margin-right: 0 !important;
+            }
+            
+            .timeline-dot {
+                left: 20px;
+            }
+            
+            .timeline-content::before {
+                left: -10px !important;
+                right: auto !important;
+                border-left: 2px solid var(--gray-light);
+                border-bottom: 2px solid var(--gray-light);
+                border-right: none;
+                border-top: none;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><i class="fas fa-code"></i></div>
+                <div class="logo-text">XFFD技术社区</div>
+            </a>
+            
+            <div class="nav-links">
+                <a href="index.html"><i class="fas fa-home"></i> 首页</a>
+                <a href="forum.html"><i class="fas fa-comments"></i> 论坛</a>
+                <a href="topics.html"><i class="fas fa-tags"></i> 话题</a>
+                <a href="members.html"><i class="fas fa-users"></i> 成员</a>
+                <a href="about.html" class="active"><i class="fas fa-info-circle"></i> 关于</a>
+            </div>
+            
+            <div class="user-section">
+                <div class="user-avatar">XF</div>
+                <span>访客用户</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <main class="main-content">
+        <!-- 页面标题 -->
+        <div class="page-header">
+            <h1><i class="fas fa-info-circle"></i> 关于 XFFD 技术社区</h1>
+            <p>了解我们的使命、愿景和社区发展历程</p>
+        </div>
+
+        <!-- 社区介绍 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <i class="fas fa-bullseye" style="color: #4fc3f7;"></i>
+                    <span>我们的使命</span>
+                </div>
+            </div>
+            <div class="grid grid-2">
+                <div>
+                    <h3><i class="fas fa-rocket"></i> 使命宣言</h3>
+                    <p style="margin-top: 15px;">
+                        为全球开发者提供一个开放、友好、专业的技术交流平台，促进知识分享、
+                        技术协作和个人成长，推动开源技术生态的繁荣发展。
+                    </p>
+                </div>
+                <div>
+                    <h3><i class="fas fa-eye"></i> 愿景目标</h3>
+                    <p style="margin-top: 15px;">
+                        成为最具影响力的中文技术社区之一，连接百万开发者，
+                        孵化优秀开源项目，培养技术领袖，推动技术创新。
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 社区数据 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <i class="fas fa-chart-bar" style="color: #64ffda;"></i>
+                    <span>社区数据</span>
+                </div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">1,234</div>
+                    <div>注册成员</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">567</div>
+                    <div>技术讨论</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">89</div>
+                    <div>开源项目</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">45</div>
+                    <div>国家地区</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 发展历程 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <i class="fas fa-history" style="color: #ff6b6b;"></i>
+                    <span>发展历程</span>
+                </div>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date"><i class="far fa-calendar"></i> 2021年3月</div>
+                        <h3>社区成立</h3>
+                        <p>XFFD技术社区正式成立，首批50名开发者加入，开始技术分享活动。</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date"><i class="far fa-calendar"></i> 2021年9月</div>
+                        <h3>论坛上线</h3>
+                        <p>社区论坛正式上线，提供技术问答、项目展示、招聘信息等功能。</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date"><i class="far fa-calendar"></i> 2022年1月</div>
+                        <h3>开源计划启动</h3>
+                        <p>启动社区开源协作计划，首批3个开源项目获得社区支持。</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date"><i class="far fa-calendar"></i> 2022年6月</div>
+                        <h3>成员突破1000</h3>
+                        <p>社区成员突破1000人，举办首次线上技术大会，超过500人参与。</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date"><i class="far fa-calendar"></i> 2023年1月</div>
+                        <h3>新版社区上线</h3>
+                        <p>全新设计的社区网站上线，集成Giscus评论系统，提升用户体验。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 核心团队 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <i class="fas fa-users-cog" style="color: #2979ff;"></i>
+                    <span>核心团队</span>
+                </div>
+            </div>
+            
+            <div class="grid grid-4">
+                <div class="team-member">
+                    <div class="team-avatar">张</div>
+                    <div class="team-name">张明</div>
+                    <div class="team-role">创始人 & CEO</div>
+                    <p>前Google工程师，10年全栈开发经验，开源爱好者。</p>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-avatar">李</div>
+                    <div class="team-name">李华</div>
+                    <div class="team-role">技术总监</div>
+                    <p>React专家，多个开源项目维护者，技术布道师。</p>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-avatar">王</div>
+                    <div class="team-name">王强</div>
+                    <div class="team-role">社区经理</div>
+                    <p>前技术社区运营，擅长社区建设和活动策划。</p>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-avatar">赵</div>
+                    <div class="team-name">赵雪</div>
+                    <div class="team-role">内容总监</div>
+                    <p>技术作家，AI领域专家，多个技术大会演讲者。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 常见问题 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <i class="fas fa-question-circle" style="color: #4fc3f7;"></i>
+                    <span>常见问题</span>
+                </div>
+            </div>
+            
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <i class="fas fa-question"></i>
+                        XFFD社区是免费的吗？
+                    </div>
+                    <div class="faq-answer">
+                        是的，XFFD技术社区完全免费开放。我们致力于为开发者提供一个无门槛的技术交流平台，所有功能均可免费使用。
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <i class="fas fa-question"></i>
+                        如何加入社区？
+                    </div>
+                    <div class="faq-answer">
+                        访问论坛页面，使用GitHub账号登录即可加入社区。无需注册，使用你现有的GitHub身份即可参与所有讨论。
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <i class="fas fa-question"></i>
+                        可以在社区发布招聘信息吗？
+                    </div>
+                    <div class="faq-answer">
+                        可以，我们设有专门的招聘板块。但请确保发布的是真实、合法的技术岗位，并遵守社区的招聘发布规范。
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <i class="fas fa-question"></i>
+                        社区有哪些行为准则？
+                    </div>
+                    <div class="faq-answer">
+                        我们要求所有成员保持友善、专业的交流态度，尊重他人，遵守开源协议，不讨论政治敏感话题，不发布广告 spam。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 联系我们 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <i class="fas fa-envelope" style="color: #64ffda;"></i>
+                    <span>联系我们</span>
+                </div>
+            </div>
+            
+            <div class="grid grid-2">
+                <div>
+                    <div class="contact-info">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4>邮箱联系</h4>
+                            <p>contact@xffd.dev</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info">
+                        <div class="contact-icon">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <div>
+                            <h4>GitHub</h4>
+                            <p>github.com/xffd-community</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="contact-info">
+                        <div class="contact-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <div>
+                            <h4>社区论坛</h4>
+                            <p>直接在论坛发帖提问</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info">
+                        <div class="contact-icon">
+                            <i class="fas fa-newspaper"></i>
+                        </div>
+                        <div>
+                            <h4>技术博客</h4>
+                            <p>blog.xffd.dev</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">XFFD技术社区</div>
+            <div class="footer-links">
+                <a href="index.html"><i class="fas fa-home"></i> 首页</a>
+                <a href="forum.html"><i class="fas fa-comments"></i> 论坛</a>
+                <a href="topics.html"><i class="fas fa-tags"></i> 话题</a>
+                <a href="members.html"><i class="fas fa-users"></i> 成员</a>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2023 XFFD技术社区. 保留所有权利. 
+            <span style="margin-left: 10px;">当前页面: 关于我们</span>
+        </div>
+    </footer>
+
+    <script>
+        // 常见问题展开/收起功能
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const icon = this.querySelector('i');
+                
+                if (answer.style.display === 'block') {
+                    answer.style.display = 'none';
+                    icon.className = 'fas fa-question';
+                } else {
+                    answer.style.display = 'block';
+                    icon.className = 'fas fa-chevron-down';
+                }
+            });
+            
+            // 默认展开第一个
+            if (question.parentElement === document.querySelector('.faq-item')) {
+                question.click();
+            }
+        });
+        
+        // 联系信息点击效果
+        document.querySelectorAll('.contact-info').forEach(contact => {
+            contact.addEventListener('click', function() {
+                const text = this.querySelector('p').textContent;
+                alert(`联系方式: ${text}`);
+            });
+        });
+        
+        // 页面加载完成提示
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('关于页面已加载');
+        });
+    </script>
+</body>
+</html>
