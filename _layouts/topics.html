@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>话题分类 - XFFD技术社区</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .topic-card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .topic-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: inline-block;
+            padding: 15px;
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .topic-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: auto;
+            padding-top: 15px;
+            border-top: 1px solid var(--gray-light);
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        .topic-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+        
+        .topic-tag {
+            background: var(--gray-light);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--text-dark);
+        }
+        
+        .topic-tag:hover {
+            background: var(--primary-color);
+            color: white;
+            cursor: pointer;
+        }
+        
+        .trending-topics {
+            margin-top: 40px;
+        }
+        
+        .trending-list {
+            list-style: none;
+        }
+        
+        .trending-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 10px;
+            background: var(--white);
+            border-radius: var(--radius);
+            transition: all 0.3s ease;
+        }
+        
+        .trending-item:hover {
+            transform: translateX(10px);
+            box-shadow: var(--shadow);
+        }
+        
+        .trending-rank {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-right: 20px;
+            min-width: 40px;
+            text-align: center;
+        }
+        
+        .trending-content {
+            flex: 1;
+        }
+        
+        .trending-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .trending-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><i class="fas fa-code"></i></div>
+                <div class="logo-text">XFFD技术社区</div>
+            </a>
+            
+            <div class="nav-links">
+                <a href="index.html"><i class="fas fa-home"></i> 首页</a>
+                <a href="forum.html"><i class="fas fa-comments"></i> 论坛</a>
+                <a href="topics.html" class="active"><i class="fas fa-tags"></i> 话题</a>
+                <a href="members.html"><i class="fas fa-users"></i> 成员</a>
+                <a href="about.html"><i class="fas fa-info-circle"></i> 关于</a>
+            </div>
+            
+            <div class="user-section">
+                <div class="user-avatar">XF</div>
+                <span>访客用户</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <main class="main-content">
+        <!-- 页面标题 -->
+        <div class="page-header">
+            <h1><i class="fas fa-tags"></i> 话题分类</h1>
+            <p>浏览技术话题，找到你感兴趣的讨论方向</p>
+        </div>
+
+        <!-- 搜索栏 -->
+        <div class="card">
+            <div style="display: flex; gap: 15px;">
+                <div style="flex: 1; position: relative;">
+                    <i class="fas fa-search" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: var(--gray);"></i>
+                    <input type="text" placeholder="搜索话题或关键词..." style="
+                        width: 100%;
+                        padding: 15px 15px 15px 50px;
+                        border: 2px solid var(--gray-light);
+                        border-radius: 50px;
+                        font-size: 1rem;
+                        outline: none;
+                        transition: border-color 0.3s ease;
+                    " onfocus="this.style.borderColor='var(--primary-color)'" 
+                    onblur="this.style.borderColor='var(--gray-light)'">
+                </div>
+                <button class="btn btn-primary">
+                    <i class="fas fa-search"></i> 搜索
+                </button>
+                <button class="btn btn-secondary">
+                    <i class="fas fa-random"></i> 随机话题
+                </button>
+            </div>
+        </div>
+
+        <!-- 热门话题分类 -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <i class="fas fa-fire" style="color: #ff6b6b;"></i>
+                    <span>热门话题分类</span>
+                </div>
+                <span class="btn btn-secondary">查看全部 <i class="fas fa-arrow-right"></i></span>
+            </div>
+            
+            <div class="grid grid-4">
+                <!-- 前端开发 -->
+                <div class="topic-card card">
+                    <div class="topic-icon" style="background: rgba(79, 195, 247, 0.1); color: #4fc3f7;">
+                        <i class="fab fa-js-square"></i>
+                    </div>
+                    <h3>前端开发</h3>
+                    <p>JavaScript, React, Vue.js, CSS, 前端工程化等相关讨论</p>
+                    <div class="topic-tags">
+                        <span class="topic-tag">JavaScript</span>
+                        <span class="topic-tag">React</span>
+                        <span class="topic-tag">Vue</span>
+                        <span class="topic-tag">CSS</span>
+                    </div>
+                    <div class="topic-stats">
+                        <span><i class="fas fa-comments"></i> 234 讨论</span>
+                        <span><i class="fas fa-eye"></i> 5.6K 浏览</span>
+                    </div>
+                </div>
+                
+                <!-- 后端开发 -->
+                <div class="topic-card card">
+                    <div class="topic-icon" style="background: rgba(255, 107, 107, 0.1); color: #ff6b6b;">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3>后端开发</h3>
+                    <p>Node.js, Python, Java, 数据库, 服务器架构等相关讨论</p>
+                    <div class="topic-tags">
+                        <span class="topic-tag">Node.js</span>
+                        <span class="topic-tag">Python</span>
+                        <span class="topic-tag">数据库</span>
+                        <span class="topic-tag">API</span>
+                    </div>
+                    <div class="topic-stats">
+                        <span><i class="fas fa-comments"></i> 189 讨论</span>
+                        <span><i class="fas fa-eye"></i> 4.2K 浏览</span>
+                    </div>
+                </div>
+                
+                <!-- 移动开发 -->
+                <div class="topic-card card">
+                    <div class="topic-icon" style="background: rgba(100, 255, 218, 0.1); color: #64ffda;">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>移动开发</h3>
+                    <p>Flutter, React Native, iOS, Android, 跨平台开发等相关讨论</p>
+                    <div class="topic-tags">
+                        <span class="topic-tag">Flutter</span>
+                        <span class="topic-tag">React Native</span>
+                        <span class="topic-tag">Android</span>
+                        <span class="topic-tag">iOS</span>
+                    </div>
+                    <div class="topic-stats">
+                        <span><i class="fas fa-comments"></i> 156 讨论</span>
+                        <span><i class="fas fa-eye"></i> 3.8K 浏览</span>
+                    </div>
+                </div>
+                
+                <!-- 人工智能 -->
+                <div class="topic-card card">
+                    <div class="topic-icon" style="background: rgba(41, 121, 255, 0.1); color: #2979ff;">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>人工智能</h3>
+                    <p>机器学习, 深度学习, 自然语言处理, 计算机视觉等相关讨论</p>
+                    <div class="topic-tags">
+                        <span class="topic-tag">机器学习</span>
+                        <span class="topic-tag">深度学习</span>
+                        <span class="topic-tag">AI</span>
+                        <span class="topic-tag">数据科学</span>
+                    </div>
+                    <div class="topic-stats">
+                        <span><i class="fas fa-comments"></i> 278 讨论</span>
+                        <span><i class="fas fa-eye"></i> 7.3K 浏览</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 更多分类 -->
+        <div class="grid grid-2">
+            <!-- 热门话题 -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <i class="fas fa-chart-line" style="color: #4fc3f7;"></i>
+                        <span>热门讨论话题</span>
+                    </div>
+                </div>
+                
+                <div class="trending-list">
+                    <div class="trending-item">
+                        <div class="trending-rank">1</div>
+                        <div class="trending-content">
+                            <div class="trending-title">React 18 新特性深度解析</div>
+                            <div class="trending-meta">
+                                <span><i class="fas fa-comments"></i> 45 回复</span>
+                                <span><i class="fas fa-eye"></i> 1.2K 浏览</span>
+                                <span><i class="fas fa-user"></i> 张三</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="trending-item">
+                        <div class="trending-rank">2</div>
+                        <div class="trending-content">
+                            <div class="trending-title">如何优化前端应用性能？</div>
+                            <div class="trending-meta">
+                                <span><i class="fas fa-comments"></i> 38 回复</span>
+                                <span><i class="fas fa-eye"></i> 980 浏览</span>
+                                <span><i class="fas fa-user"></i> 李四</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="trending-item">
+                        <div class="trending-rank">3</div>
+                        <div class="trending-content">
+                            <div class="trending-title">Node.js 微服务架构实践</div>
+                            <div class="trending-meta">
+                                <span><i class="fas fa-comments"></i> 32 回复</span>
+                                <span><i class="fas fa-eye"></i> 890 浏览</span>
+                                <span><i class="fas fa-user"></i> 王五</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-3">
+                    <a href="forum.html" class="btn btn-secondary">查看全部话题</a>
+                </div>
+            </div>
+            
+            <!-- 新建话题 -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <i class="fas fa-plus-circle" style="color: #64ffda;"></i>
+                        <span>创建新话题</span>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; padding: 40px 20px;">
+                    <div style="font-size: 4rem; color: var(--gray-light); margin-bottom: 20px;">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 style="margin-bottom: 15px;">没有找到合适的话题？</h3>
+                    <p style="color: var(--gray); margin-bottom: 25px;">创建一个新的话题，发起属于你的技术讨论</p>
+                    <a href="forum.html" class="btn btn-primary" style="display: inline-flex;">
+                        <i class="fas fa-plus"></i> 创建新话题
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">XFFD技术社区</div>
+            <div class="footer-links">
+                <a href="index.html"><i class="fas fa-home"></i> 首页</a>
+                <a href="forum.html"><i class="fas fa-comments"></i> 论坛</a>
+                <a href="topics.html"><i class="fas fa-tags"></i> 话题</a>
+                <a href="about.html"><i class="fas fa-info-circle"></i> 关于</a>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2023 XFFD技术社区. 保留所有权利. 
+            <span style="margin-left: 10px;">当前页面: 话题分类</span>
+        </div>
+    </footer>
+
+    <script>
+        // 话题标签点击效果
+        document.querySelectorAll('.topic-tag').forEach(tag => {
+            tag.addEventListener('click', function() {
+                const tagText = this.textContent;
+                alert(`搜索标签: ${tagText}`);
+                // 实际应用中这里可以跳转到搜索页面或过滤内容
+            });
+        });
+        
+        // 搜索功能
+        document.querySelector('button.btn-primary').addEventListener('click', function() {
+            const searchInput = document.querySelector('input[type="text"]');
+            if (searchInput.value.trim()) {
+                alert(`搜索: ${searchInput.value}`);
+                // 实际应用中这里可以执行搜索操作
+            }
+        });
+        
+        // 随机话题功能
+        document.querySelector('button.btn-secondary').addEventListener('click', function() {
+            const tags = ['JavaScript', 'React', 'Python', 'AI', '数据库', 'Node.js', 'Flutter', '机器学习'];
+            const randomTag = tags[Math.floor(Math.random() * tags.length)];
+            alert(`随机推荐话题: ${randomTag}`);
+        });
+    </script>
+</body>
+</html>
