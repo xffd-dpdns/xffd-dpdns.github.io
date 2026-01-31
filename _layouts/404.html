@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>页面未找到 - XFFD技术社区</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .error-container {
+            text-align: center;
+            padding: 80px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .error-code {
+            font-size: 8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            line-height: 1;
+            margin-bottom: 20px;
+            text-shadow: 4px 4px 0 rgba(79, 195, 247, 0.1);
+        }
+        
+        .error-title {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+        
+        .error-description {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .error-actions {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 50px;
+        }
+        
+        .search-box {
+            max-width: 500px;
+            margin: 40px auto;
+            position: relative;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 18px 60px 18px 25px;
+            border: 2px solid var(--gray-light);
+            border-radius: 50px;
+            font-size: 1.1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        
+        .search-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(79, 195, 247, 0.2);
+        }
+        
+        .search-button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .search-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .suggestions {
+            margin-top: 60px;
+        }
+        
+        .suggestion-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .suggestion-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 25px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .suggestion-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .suggestion-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .error-animation {
+            position: relative;
+            height: 200px;
+            margin-bottom: 50px;
+            overflow: hidden;
+        }
+        
+        .floating-element {
+            position: absolute;
+            font-size: 3rem;
+            opacity: 0.1;
+            animation: float 15s infinite linear;
+        }
+        
+        .floating-element:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+            color: #4fc3f7;
+        }
+        
+        .floating-element:nth-child(2) {
+            top: 60%;
+            left: 80%;
+            animation-delay: -5s;
+            color: #64ffda;
+            animation-duration: 20s;
+        }
+        
+        .floating-element:nth-child(3) {
+            top: 80%;
+            left: 20%;
+            animation-delay: -10s;
+            color: #ff6b6b;
+            animation-duration: 25s;
+        }
+        
+        .floating-element:nth-child(4) {
+            top: 30%;
+            left: 70%;
+            animation-delay: -7s;
+            color: #2979ff;
+            animation-duration: 18s;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(100px, 50px) rotate(90deg);
+            }
+            50% {
+                transform: translate(50px, 100px) rotate(180deg);
+            }
+            75% {
+                transform: translate(-50px, 50px) rotate(270deg);
+            }
+            100% {
+                transform: translate(0, 0) rotate(360deg);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 6rem;
+            }
+            
+            .error-title {
+                font-size: 2rem;
+            }
+            
+            .error-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><i class="fas fa-code"></i></div>
+                <div class="logo-text">XFFD技术社区</div>
+            </a>
+            
+            <div class="nav-links">
+                <a href="index.html"><i class="fas fa-home"></i> 首页</a>
+                <a href="forum.html"><i class="fas fa-comments"></i> 论坛</a>
+                <a href="topics.html"><i class="fas fa-tags"></i> 话题</a>
+                <a href="members.html"><i class="fas fa-users"></i> 成员</a>
+                <a href="about.html"><i class="fas fa-info-circle"></i> 关于</a>
+            </div>
+            
+            <div class="user-section">
+                <div class="user-avatar">XF</div>
+                <span>访客用户</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <main class="main-content">
+        <div class="error-container">
+            <!-- 动画装饰 -->
+            <div class="error-animation">
+                <div class="floating-element"><i class="fas fa-code"></i></div>
+                <div class="floating-element"><i class="fas fa-bug"></i></div>
+                <div class="floating-element"><i class="fas fa-question"></i></div>
+                <div class="floating-element"><i class="fas fa-search"></i></div>
+            </div>
+            
+            <!-- 错误代码 -->
+            <div class="error-code">404</div>
+            
+            <!-- 错误标题 -->
+            <h1 class="error-title">
+                <i class="fas fa-map-signs"></i> 页面未找到
+            </h1>
+            
+            <!-- 错误描述 -->
+            <p class="error-description">
+                抱歉，您访问的页面可能已被移动、删除或暂时不可用。
+                请检查URL是否正确，或使用下面的搜索功能查找您需要的内容。
+            </p>
+            
+            <!-- 操作按钮 -->
+            <div class="error-actions">
+                <a href="index.html" class="btn btn-primary">
+                    <i class="fas fa-home"></i> 返回首页
+                </a>
+                <a href="forum.html" class="btn btn-secondary">
+                    <i class="fas fa-comments"></i> 浏览论坛
+                </a>
+                <button onclick="window.history.back()" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> 返回上一页
+                </button>
+            </div>
+            
+            <!-- 搜索框 -->
+            <div class="search-box">
+                <input type="text" class="search-input" placeholder="在XFFD社区中搜索技术内容..." id="searchInput">
+                <button class="search-button" id="searchButton">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            
+            <!-- 建议内容 -->
+            <div class="suggestions">
+                <h2 class="text-center">
+                    <i class="fas fa-lightbulb"></i> 您可能想访问
+                </h2>
+                
+                <div class="suggestion-grid">
+                    <a href="forum.html" class="suggestion-card">
+                        <div class="suggestion-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3>技术论坛</h3>
+                        <p>参与技术讨论，提问和解答编程问题</p>
+                    </a>
+                    
+                    <a href="topics.html" class="suggestion-card">
+                        <div class="suggestion-icon">
+                            <i class="fas fa-tags"></i>
+                        </div>
+                        <h3>话题分类</h3>
+                        <p>浏览热门技术话题和分类讨论</p>
+                    </a>
+                    
+                    <a href="members.html" class="suggestion-card">
+                        <div class="suggestion-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>社区成员</h3>
+                        <p>认识社区开发者，寻找技术伙伴</p>
+                    </a>
+                    
+                    <a href="about.html" class="suggestion-card">
+                        <div class="suggestion-icon">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                        <h3>关于我们</h3>
+                        <p>了解XFFD社区的使命和发展历程</p>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- 错误报告 -->
+            <div class="card mt-4">
+                <div class="text-center">
+                    <h3><i class="fas fa-exclamation-triangle"></i> 遇到问题？</h3>
+                    <p style="color: var(--gray); margin: 15px 0;">
+                        如果您认为这是一个错误，或者需要进一步的帮助，请在论坛中反馈。
+                    </p>
+                    <a href="forum.html" class="btn btn-secondary">
+                        <i class="fas fa-bug"></i> 报告问题
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">XFFD技术社区</div>
+            <div class="footer-links">
+                <a href="index.html"><i class="fas fa-home"></i> 首页</a>
+                <a href="forum.html"><i class="fas fa-comments"></i> 论坛</a>
+                <a href="topics.html"><i class="fas fa-tags"></i> 话题</a>
+                <a href="about.html"><i class="fas fa-info-circle"></i> 关于</a>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2023 XFFD技术社区. 保留所有权利. 
+            <span style="margin-left: 10px;">错误页面: 404 - 页面未找到</span>
+        </div>
+    </footer>
+
+    <script>
+        // 搜索功能
+        document.getElementById('searchButton').addEventListener('click', performSearch);
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+        
+        function performSearch() {
+            const query = document.getElementById('searchInput').value.trim();
+            if (query) {
+                alert(`搜索: ${query}\n\n在实际应用中，这里会跳转到搜索结果页面。`);
+                // 实际应用中这里可以跳转到搜索页面
+                // window.location.href = `search.html?q=${encodeURIComponent(query)}`;
+            } else {
+                document.getElementById('searchInput').focus();
+            }
+        }
+        
+        // 随机建议功能
+        const suggestions = [
+            "React Hooks使用技巧",
+            "Node.js性能优化",
+            "Python数据分析",
+            "前端工程化实践",
+            "微服务架构设计",
+            "人工智能入门指南",
+            "数据库设计原则",
+            "DevOps最佳实践"
+        ];
+        
+        // 随机显示一个搜索建议
+        function showRandomSuggestion() {
+            const searchInput = document.getElementById('searchInput');
+            const randomSuggestion = suggestions[Math.floor(Math.random() * suggestions.length)];
+            
+            let i = 0;
+            const typeWriter = () => {
+                if (i < randomSuggestion.length) {
+                    searchInput.placeholder = `在XFFD社区中搜索技术内容... 例如：${randomSuggestion.substring(0, i + 1)}`;
+                    i++;
+                    setTimeout(typeWriter, 50);
+                }
+            };
+            
+            // 每隔10秒更换一次建议
+            setTimeout(typeWriter, 1000);
+            setTimeout(showRandomSuggestion, 15000);
+        }
+        
+        // 页面加载完成后的效果
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('404页面已加载');
+            showRandomSuggestion();
+            
+            // 添加一些交互效果
+            const errorCode = document.querySelector('.error-code');
+            errorCode.addEventListener('mouseover', function() {
+                this.style.transform = 'scale(1.1)';
+                this.style.transition = 'transform 0.3s ease';
+            });
+            
+            errorCode.addEventListener('mouseout', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+        
+        // 自动聚焦到搜索框
+        window.onload = function() {
+            document.getElementById('searchInput').focus();
+        };
+    </script>
+</body>
+</html>
