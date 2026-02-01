@@ -3,300 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XFFD技术交流社区</title>
+    <title>技术论坛 - XFFD技术社区</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
-        }
-        
-        body {
-            background-color: #f5f7fa;
-            color: #333;
-            line-height: 1.6;
-        }
-        
-        /* 导航栏样式 */
-        .navbar {
-            background: linear-gradient(135deg, #2c3e50 0%, #4a6491 100%);
-            color: white;
-            padding: 0 20px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 70px;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .logo-icon {
-            font-size: 28px;
-            color: #4fc3f7;
-        }
-        
-        .logo-text {
-            font-size: 26px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            background: linear-gradient(90deg, #4fc3f7, #64ffda);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-        
-        .nav-links a {
-            color: #e3f2fd;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 8px 12px;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-        }
-        
-        .nav-links a:hover {
-            background-color: rgba(79, 195, 247, 0.15);
-            color: #4fc3f7;
-        }
-        
-        .user-section {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .user-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #4fc3f7, #2979ff);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-        }
-        
-        /* 轮播图样式 */
-        .carousel-container {
-            max-width: 1200px;
-            margin: 25px auto;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-        }
-        
-        .carousel {
-            position: relative;
-            height: 350px;
-            overflow: hidden;
-        }
-        
-        .carousel-slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 1.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 2.5rem;
-            font-weight: bold;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
-        }
-        
-        .carousel-slide.active {
-            opacity: 1;
-        }
-        
-        .slide-1 { background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') center/cover; }
-        .slide-2 { background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1555099962-4199c345e5dd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') center/cover; }
-        .slide-3 { background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') center/cover; }
-        
-        .carousel-caption {
-            text-align: center;
-            max-width: 800px;
-            padding: 0 20px;
-        }
-        
-        .carousel-caption h2 {
-            font-size: 2.8rem;
-            margin-bottom: 15px;
-        }
-        
-        .carousel-caption p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-        
-        .carousel-dots {
-            position: absolute;
-            bottom: 20px;
-            left: 0;
-            right: 0;
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-        }
-        
-        .dot {
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.5);
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        
-        .dot.active {
-            background-color: #4fc3f7;
-        }
-        
-        /* 内容区域样式 */
-        .content-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px 40px;
-        }
-        
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 35px 0 25px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #eaeef5;
-        }
-        
-        .section-title {
-            font-size: 1.8rem;
-            color: #2c3e50;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .section-title i {
-            color: #4fc3f7;
-        }
-        
-        /* 发布按钮样式 */
-        .publish-btn {
-            background: linear-gradient(135deg, #4fc3f7 0%, #2979ff 100%);
-            color: white;
-            border: none;
-            padding: 12px 28px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 4px 15px rgba(41, 121, 255, 0.3);
-            transition: all 0.3s ease;
-        }
-        
-        .publish-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(41, 121, 255, 0.4);
-        }
-        
-        /* 评论展示区样式 */
-        .comments-container {
-            background-color: white;
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
-            margin-bottom: 30px;
-        }
-        
-        .comment-placeholder {
-            text-align: center;
-            padding: 60px 20px;
-            color: #7f8c8d;
-        }
-        
-        .comment-placeholder i {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            color: #ecf0f1;
-        }
-        
-        .comment-placeholder h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            color: #95a5a6;
-        }
-        
-        /* Giscus自定义样式 */
-        .giscus-frame {
-            border-radius: 12px;
-            border: 1px solid #eaeef5;
-            width: 100%;
-            min-height: 400px;
-        }
-        
-        /* 分页样式 */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 40px;
-        }
-        
-        .page-btn {
-            width: 42px;
-            height: 42px;
-            border-radius: 8px;
-            border: 1px solid #ddd;
-            background-color: white;
-            color: #555;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .page-btn.active {
-            background-color: #4fc3f7;
-            color: white;
-            border-color: #4fc3f7;
-        }
-        
-        .page-btn:hover:not(.active) {
-            background-color: #f8f9fa;
-            border-color: #4fc3f7;
-            color: #4fc3f7;
-        }
-        
-        /* 弹窗样式 */
+        /* 弹窗样式修复 */
         .modal {
             display: none;
             position: fixed;
@@ -308,10 +19,13 @@
             z-index: 2000;
             align-items: center;
             justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
         
         .modal.active {
             display: flex;
+            opacity: 1;
         }
         
         .modal-content {
@@ -322,21 +36,22 @@
             border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            animation: modalAppear 0.3s ease;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
         }
         
-        @keyframes modalAppear {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
+        .modal.active .modal-content {
+            transform: translateY(0);
         }
         
         .modal-header {
-            background: linear-gradient(135deg, #2c3e50 0%, #4a6491 100%);
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #4a6491 100%);
             color: white;
             padding: 22px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
         }
         
         .modal-header h2 {
@@ -371,80 +86,34 @@
             max-height: calc(85vh - 80px);
         }
         
-        /* 页脚样式 */
-        footer {
-            background-color: #2c3e50;
-            color: #ecf0f1;
-            padding: 40px 20px;
-            margin-top: 60px;
+        /* Giscus 容器优化 */
+        #giscus-container {
+            min-height: 500px;
+            transition: all 0.3s ease;
         }
         
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .giscus-frame {
+            border-radius: var(--radius);
+            border: 1px solid var(--gray-light);
+            width: 100%;
+            min-height: 400px;
         }
         
-        .footer-logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #4fc3f7;
+        #giscus-widget .giscus-frame {
+            min-height: 450px;
         }
         
-        .footer-links {
-            display: flex;
-            gap: 30px;
-        }
-        
-        .footer-links a {
-            color: #bdc3c7;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            color: #4fc3f7;
-        }
-        
-        .copyright {
+        .loading-comments {
             text-align: center;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #34495e;
-            color: #95a5a6;
-            font-size: 0.9rem;
+            padding: 60px 20px;
+            color: var(--gray);
         }
         
-        /* 响应式设计 */
-        @media (max-width: 768px) {
-            .nav-container {
-                flex-direction: column;
-                height: auto;
-                padding: 15px 0;
-                gap: 15px;
-            }
-            
-            .carousel {
-                height: 280px;
-            }
-            
-            .carousel-caption h2 {
-                font-size: 2rem;
-            }
-            
-            .section-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 20px;
-            }
-            
-            .footer-content {
-                flex-direction: column;
-                gap: 25px;
-                text-align: center;
-            }
+        .loading-comments i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            opacity: 0.7;
         }
     </style>
 </head>
@@ -452,17 +121,17 @@
     <!-- 导航栏 -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">
+            <a href="index.html" class="logo">
                 <div class="logo-icon"><i class="fas fa-code"></i></div>
                 <div class="logo-text">XFFD技术社区</div>
-            </div>
+            </a>
             
             <div class="nav-links">
-                <a href="#"><i class="fas fa-home"></i> 首页</a>
-                <a href="#"><i class="fas fa-comments"></i> 论坛</a>
-                <a href="#"><i class="fas fa-tags"></i> 话题</a>
-                <a href="#"><i class="fas fa-users"></i> 成员</a>
-                <a href="#"><i class="fas fa-info-circle"></i> 关于</a>
+                <a href="index.html"><i class="fas fa-home"></i> 首页</a>
+                <a href="forum.html" class="active"><i class="fas fa-comments"></i> 论坛</a>
+                <a href="topics.html"><i class="fas fa-tags"></i> 话题</a>
+                <a href="members.html"><i class="fas fa-users"></i> 成员</a>
+                <a href="about.html"><i class="fas fa-info-circle"></i> 关于</a>
             </div>
             
             <div class="user-section">
@@ -472,42 +141,17 @@
         </div>
     </nav>
 
-    <!-- 轮播图 -->
-    <div class="carousel-container">
-        <div class="carousel">
-            <div class="carousel-slide slide-1 active">
-                <div class="carousel-caption">
-                    <h2>欢迎来到XFFD技术社区</h2>
-                    <p>与开发者共同探索前沿技术，分享编程经验，解决技术难题</p>
-                </div>
-            </div>
-            <div class="carousel-slide slide-2">
-                <div class="carousel-caption">
-                    <h2>开源协作，共同成长</h2>
-                    <p>参与开源项目，与社区成员一起构建更好的技术生态</p>
-                </div>
-            </div>
-            <div class="carousel-slide slide-3">
-                <div class="carousel-caption">
-                    <h2>技术讨论，深度交流</h2>
-                    <p>在专业、友好的氛围中探讨技术趋势，分享实践经验</p>
-                </div>
-            </div>
-            
-            <div class="carousel-dots">
-                <div class="dot active" data-slide="0"></div>
-                <div class="dot" data-slide="1"></div>
-                <div class="dot" data-slide="2"></div>
-            </div>
+    <!-- 主要内容 -->
+    <main class="main-content">
+        <div class="page-header">
+            <h1><i class="fas fa-comments"></i> 技术论坛</h1>
+            <p>欢迎来到社区讨论区，请友好交流，共同学习</p>
         </div>
-    </div>
 
-    <!-- 主要内容区域 -->
-    <div class="content-container">
         <div class="section-header">
             <div class="section-title">
                 <i class="fas fa-comment-dots"></i>
-                社区讨论
+                所有讨论
             </div>
             <button class="publish-btn" id="openModalBtn">
                 <i class="fas fa-plus-circle"></i>
@@ -516,19 +160,38 @@
         </div>
         
         <!-- 评论展示区 -->
-        <div class="comments-container">
-            <div class="comment-placeholder" id="commentsPlaceholder">
-                <i class="fas fa-comments"></i>
-                <h3>社区讨论即将开始</h3>
-                <p>点击右上角的"发布新帖"按钮，发表第一个讨论话题</p>
-                <p>所有帖子将通过Giscus系统存储在你的GitHub仓库中</p>
+        <div class="comments-container card">
+            <div class="loading-comments" id="loadingComments">
+                <i class="fas fa-spinner fa-spin"></i>
+                <h3>正在加载评论...</h3>
+                <p>如果长时间未显示，请检查网络或刷新页面</p>
             </div>
             
-            <!-- Giscus评论展示区将在这里动态加载 -->
-            <div id="giscus-container" style="display: none;"></div>
+            <!-- Giscus评论展示区 -->
+            <div id="giscus-container" style="display: none;">
+                <!-- ==================== 你的Giscus配置粘贴在这里 ==================== -->
+                <!-- 注意：只需要这一个脚本，用于展示所有评论 -->
+                <script src="https://giscus.app/client.js"
+                        data-repo="xffd-dpdns/xffd-dpdns.github.io"
+                        data-repo-id="R_kgDORE300g"
+                        data-category="Announcements"
+                        data-category-id="DIC_kwDORE300s4C1rx8"
+                        data-mapping="url"
+                        data-strict="0"
+                        data-reactions-enabled="1"
+                        data-emit-metadata="1"
+                        data-input-position="bottom"
+                        data-theme="light"
+                        data-lang="zh-CN"
+                        data-loading="lazy"
+                        crossorigin="anonymous"
+                        async>
+                </script>
+                <!-- ==================== 配置结束 ==================== -->
+            </div>
         </div>
         
-        <!-- 分页控件 -->
+        <!-- 分页占位 -->
         <div class="pagination">
             <button class="page-btn active">1</button>
             <button class="page-btn">2</button>
@@ -536,7 +199,7 @@
             <button class="page-btn">4</button>
             <button class="page-btn">5</button>
         </div>
-    </div>
+    </main>
 
     <!-- 发布弹窗 -->
     <div class="modal" id="giscusModal">
@@ -546,7 +209,7 @@
                 <button class="close-btn" id="closeModalBtn">&times;</button>
             </div>
             <div class="modal-body">
-                <!-- Giscus评论框将在这里加载 -->
+                <!-- Giscus评论框将在这里加载（仅用于发布） -->
                 <div id="giscus-widget"></div>
             </div>
         </div>
@@ -557,84 +220,94 @@
         <div class="footer-content">
             <div class="footer-logo">XFFD技术社区</div>
             <div class="footer-links">
-                <a href="#"><i class="fas fa-shield-alt"></i> 隐私政策</a>
-                <a href="#"><i class="fas fa-file-contract"></i> 服务条款</a>
-                <a href="#"><i class="fas fa-envelope"></i> 联系我们</a>
-                <a href="#"><i class="fab fa-github"></i> GitHub</a>
+                <a href="index.html"><i class="fas fa-home"></i> 首页</a>
+                <a href="forum.html"><i class="fas fa-comments"></i> 论坛</a>
+                <a href="topics.html"><i class="fas fa-tags"></i> 话题</a>
+                <a href="members.html"><i class="fas fa-users"></i> 成员</a>
             </div>
         </div>
         <div class="copyright">
             &copy; 2023 XFFD技术社区. 本页面使用Giscus评论系统. 保留所有权利.
+            <span style="margin-left: 10px;">当前页面: 论坛</span>
         </div>
     </footer>
 
     <script>
-        // 轮播图功能
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.carousel-slide');
-        const dots = document.querySelectorAll('.dot');
-        
-        function showSlide(index) {
-            slides.forEach(slide => slide.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
-            
-            slides[index].classList.add('active');
-            dots[index].classList.add('active');
-            currentSlide = index;
-        }
-        
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                showSlide(index);
-            });
-        });
-        
-        setInterval(() => {
-            currentSlide = (currentSlide + 1) % slides.length;
-            showSlide(currentSlide);
-        }, 5000);
-        
-        // 弹窗功能
+        // ==================== 弹窗控制逻辑 (修复版) ====================
         const modal = document.getElementById('giscusModal');
         const openModalBtn = document.getElementById('openModalBtn');
         const closeModalBtn = document.getElementById('closeModalBtn');
+        let giscusWidgetLoaded = false; // 标记弹窗内Giscus是否已加载
         
+        // 1. 点击"发布新帖"打开弹窗
         openModalBtn.addEventListener('click', () => {
             modal.classList.add('active');
-            setTimeout(loadGiscusWidget, 300);
-        });
-        
-        closeModalBtn.addEventListener('click', () => {
-            modal.classList.remove('active');
-        });
-        
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.classList.remove('active');
+            document.body.style.overflow = 'hidden'; // 防止背景滚动
+            
+            // 延迟加载弹窗内的Giscus部件
+            if (!giscusWidgetLoaded) {
+                setTimeout(() => {
+                    loadGiscusWidget();
+                    giscusWidgetLoaded = true;
+                }, 300);
             }
         });
         
-        // 分页按钮事件
-        document.querySelectorAll('.page-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.page-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                console.log('切换到第', this.textContent, '页');
-            });
+        // 2. 点击关闭按钮关闭弹窗
+        closeModalBtn.addEventListener('click', closeModal);
+        
+        // 3. 点击弹窗外部背景关闭弹窗
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
         });
         
-        // 加载Giscus部件到弹窗
+        // 4. 按ESC键关闭弹窗
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+        
+        // 关闭弹窗的函数
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto'; // 恢复背景滚动
+        }
+        
+        // ==================== Giscus 加载逻辑 ====================
+        
+        // 主展示区Giscus加载状态检查
+        function checkGiscusLoaded() {
+            const giscusContainer = document.getElementById('giscus-container');
+            const loadingElement = document.getElementById('loadingComments');
+            
+            // 检查Giscus iframe是否已加载
+            if (giscusContainer.querySelector('iframe')) {
+                // Giscus已加载，隐藏加载提示
+                giscusContainer.style.display = 'block';
+                loadingElement.style.display = 'none';
+                console.log('主评论区Giscus已加载');
+            } else {
+                // 继续检查
+                setTimeout(checkGiscusLoaded, 1000);
+            }
+        }
+        
+        // 加载弹窗内的Giscus部件（仅用于发布）
         function loadGiscusWidget() {
             const giscusWidget = document.getElementById('giscus-widget');
             
+            // 如果已经加载过，则不再重复加载
             if (giscusWidget.querySelector('iframe')) {
                 return;
             }
             
-            // 创建Giscus脚本 - 用于弹窗发布
+            // 创建Giscus脚本 - 用于弹窗发布（配置与主展示区相同，但输入框在上方）
             const script = document.createElement('script');
             script.src = "https://giscus.app/client.js";
-            script.setAttribute("data-repo", "xffd-dpdns/IFFF.github.io");
+            script.setAttribute("data-repo", "xffd-dpdns/xffd-dpdns.github.io");
             script.setAttribute("data-repo-id", "R_kgDORE300g");
             script.setAttribute("data-category", "Announcements");
             script.setAttribute("data-category-id", "DIC_kwDORE300s4C1rx8");
@@ -642,7 +315,7 @@
             script.setAttribute("data-strict", "0");
             script.setAttribute("data-reactions-enabled", "1");
             script.setAttribute("data-emit-metadata", "1");
-            script.setAttribute("data-input-position", "top");
+            script.setAttribute("data-input-position", "top"); // 弹窗内输入框在上方
             script.setAttribute("data-theme", "light");
             script.setAttribute("data-lang", "zh-CN");
             script.setAttribute("data-loading", "lazy");
@@ -651,49 +324,40 @@
             
             giscusWidget.innerHTML = '';
             giscusWidget.appendChild(script);
-            
-            loadGiscusComments();
+            console.log('弹窗发布部件Giscus已加载');
         }
         
-        // 加载Giscus评论展示区
-        function loadGiscusComments() {
-            const giscusContainer = document.getElementById('giscus-container');
-            const placeholder = document.getElementById('commentsPlaceholder');
-            
-            if (giscusContainer.querySelector('iframe')) {
-                giscusContainer.style.display = 'block';
-                placeholder.style.display = 'none';
-                return;
-            }
-            
-            // 创建Giscus脚本 - 用于展示评论
-            const script = document.createElement('script');
-            script.src = "https://giscus.app/client.js";
-            script.setAttribute("data-repo", "xffd-dpdns/IFFF.github.io");
-            script.setAttribute("data-repo-id", "R_kgDORE300g");
-            script.setAttribute("data-category", "Announcements");
-            script.setAttribute("data-category-id", "DIC_kwDORE300s4C1rx8");
-            script.setAttribute("data-mapping", "url");
-            script.setAttribute("data-strict", "0");
-            script.setAttribute("data-reactions-enabled", "1");
-            script.setAttribute("data-emit-metadata", "1");
-            script.setAttribute("data-input-position", "bottom");
-            script.setAttribute("data-theme", "light");
-            script.setAttribute("data-lang", "zh-CN");
-            script.setAttribute("data-loading", "lazy");
-            script.setAttribute("crossorigin", "anonymous");
-            script.async = true;
-            
-            giscusContainer.style.display = 'block';
-            placeholder.style.display = 'none';
-            giscusContainer.innerHTML = '';
-            giscusContainer.appendChild(script);
-        }
-        
-        // 页面加载完成后初始化评论展示
+        // ==================== 页面初始化 ====================
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('XFFD技术社区论坛已加载');
-            loadGiscusComments();
+            console.log('论坛页面已加载，等待Giscus初始化...');
+            
+            // 检查主展示区Giscus加载状态
+            setTimeout(checkGiscusLoaded, 2000);
+            
+            // 分页按钮事件（示例功能）
+            document.querySelectorAll('.page-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.page-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    console.log('切换到第', this.textContent, '页');
+                    // 注意：实际分页由Giscus自动处理，这里只是UI示例
+                });
+            });
+        });
+        
+        // 监听Giscus的ready事件（如果Giscus支持）
+        window.addEventListener('message', event => {
+            if (event.origin === 'https://giscus.app') {
+                const giscusData = event.data.giscus;
+                if (giscusData && giscusData.discussion) {
+                    console.log('Giscus讨论已加载:', giscusData.discussion);
+                    
+                    // 当新评论发布后，可以在这里触发更新
+                    if (giscusData.discussion.numComments > 0) {
+                        console.log('有新评论，总数:', giscusData.discussion.numComments);
+                    }
+                }
+            }
         });
     </script>
 </body>
