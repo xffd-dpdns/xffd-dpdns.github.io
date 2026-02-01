@@ -115,6 +115,62 @@
             color: var(--primary-color);
             opacity: 0.7;
         }
+        /* ====== 紧急修复：按钮与分页样式 ====== */
+/* 发布按钮修复 */
+.publish-btn {
+    background: linear-gradient(135deg, #4fc3f7 0%, #2979ff 100%) !important;
+    color: white !important;
+    border: none !important;
+    padding: 12px 28px !important;
+    border-radius: 50px !important;
+    font-weight: 600 !important;
+    font-size: 1rem !important;
+    cursor: pointer !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    box-shadow: 0 4px 15px rgba(41, 121, 255, 0.3) !important;
+    transition: all 0.3s ease !important;
+    text-decoration: none !important;
+}
+.publish-btn:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 6px 20px rgba(41, 121, 255, 0.4) !important;
+}
+
+/* 分页按钮修复 */
+.pagination {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    margin-top: 40px !important;
+}
+.page-btn {
+    width: 42px !important;
+    height: 42px !important;
+    border-radius: 8px !important;
+    border: 1px solid #ddd !important;
+    background-color: white !important;
+    color: #555 !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+.page-btn.active {
+    background-color: #4fc3f7 !important;
+    color: white !important;
+    border-color: #4fc3f7 !important;
+}
+.page-btn:hover:not(.active) {
+    background-color: #f8f9fa !important;
+    border-color: #4fc3f7 !important;
+    color: #4fc3f7 !important;
+}
+/* ====== 修复结束 ====== */
     </style>
 </head>
 <body>
