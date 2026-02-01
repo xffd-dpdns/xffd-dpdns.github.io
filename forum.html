@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* 弹窗样式修复 */
+        /* 弹窗样式 */
         .modal {
             display: none;
             position: fixed;
@@ -51,7 +51,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: relative;
         }
         
         .modal-header h2 {
@@ -86,10 +85,51 @@
             max-height: calc(85vh - 80px);
         }
         
-        /* Giscus 容器优化 */
+        /* 主内容区标题栏 - 关键修改：按钮放右上角 */
+        .section-header {
+            display: flex;
+            justify-content: space-between; /* 标题和按钮分居左右 */
+            align-items: center;
+            margin: 35px 0 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--gray-light);
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* 发布按钮样式 */
+        .publish-btn {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(41, 121, 255, 0.3);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .publish-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(41, 121, 255, 0.4);
+        }
+        
+        /* Giscus 容器 */
         #giscus-container {
             min-height: 500px;
-            transition: all 0.3s ease;
         }
         
         .giscus-frame {
@@ -115,62 +155,54 @@
             color: var(--primary-color);
             opacity: 0.7;
         }
-        /* ====== 紧急修复：按钮与分页样式 ====== */
-/* 发布按钮修复 */
-.publish-btn {
-    background: linear-gradient(135deg, #4fc3f7 0%, #2979ff 100%) !important;
-    color: white !important;
-    border: none !important;
-    padding: 12px 28px !important;
-    border-radius: 50px !important;
-    font-weight: 600 !important;
-    font-size: 1rem !important;
-    cursor: pointer !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 10px !important;
-    box-shadow: 0 4px 15px rgba(41, 121, 255, 0.3) !important;
-    transition: all 0.3s ease !important;
-    text-decoration: none !important;
-}
-.publish-btn:hover {
-    transform: translateY(-3px) !important;
-    box-shadow: 0 6px 20px rgba(41, 121, 255, 0.4) !important;
-}
-
-/* 分页按钮修复 */
-.pagination {
-    display: flex !important;
-    justify-content: center !important;
-    gap: 10px !important;
-    margin-top: 40px !important;
-}
-.page-btn {
-    width: 42px !important;
-    height: 42px !important;
-    border-radius: 8px !important;
-    border: 1px solid #ddd !important;
-    background-color: white !important;
-    color: #555 !important;
-    font-weight: 600 !important;
-    cursor: pointer !important;
-    transition: all 0.2s ease !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-}
-.page-btn.active {
-    background-color: #4fc3f7 !important;
-    color: white !important;
-    border-color: #4fc3f7 !important;
-}
-.page-btn:hover:not(.active) {
-    background-color: #f8f9fa !important;
-    border-color: #4fc3f7 !important;
-    color: #4fc3f7 !important;
-}
-/* ====== 修复结束 ====== */
+        
+        /* 分页样式 */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 40px;
+        }
+        
+        .page-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 8px;
+            border: 1px solid var(--gray-light);
+            background-color: white;
+            color: var(--text-dark);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .page-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .page-btn:hover:not(.active) {
+            background-color: var(--gray-light);
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+            
+            .publish-btn {
+                align-self: flex-end;
+            }
+        }
     </style>
 </head>
 <body>
@@ -204,6 +236,7 @@
             <p>欢迎来到社区讨论区，请友好交流，共同学习</p>
         </div>
 
+        <!-- 标题栏：按钮已在右上角 -->
         <div class="section-header">
             <div class="section-title">
                 <i class="fas fa-comment-dots"></i>
@@ -225,8 +258,7 @@
             
             <!-- Giscus评论展示区 -->
             <div id="giscus-container" style="display: none;">
-                <!-- ==================== 你的Giscus配置粘贴在这里 ==================== -->
-                <!-- 注意：只需要这一个脚本，用于展示所有评论 -->
+                <!-- Giscus配置 -->
                 <script src="https://giscus.app/client.js"
                         data-repo="xffd-dpdns/xffd-dpdns.github.io"
                         data-repo-id="R_kgDORE300g"
@@ -243,11 +275,10 @@
                         crossorigin="anonymous"
                         async>
                 </script>
-                <!-- ==================== 配置结束 ==================== -->
             </div>
         </div>
         
-        <!-- 分页占位 -->
+        <!-- 分页控件 -->
         <div class="pagination">
             <button class="page-btn active">1</button>
             <button class="page-btn">2</button>
@@ -265,7 +296,6 @@
                 <button class="close-btn" id="closeModalBtn">&times;</button>
             </div>
             <div class="modal-body">
-                <!-- Giscus评论框将在这里加载（仅用于发布） -->
                 <div id="giscus-widget"></div>
             </div>
         </div>
@@ -289,18 +319,17 @@
     </footer>
 
     <script>
-        // ==================== 弹窗控制逻辑 (修复版) ====================
+        // ==================== 弹窗控制逻辑 ====================
         const modal = document.getElementById('giscusModal');
         const openModalBtn = document.getElementById('openModalBtn');
         const closeModalBtn = document.getElementById('closeModalBtn');
-        let giscusWidgetLoaded = false; // 标记弹窗内Giscus是否已加载
+        let giscusWidgetLoaded = false;
         
-        // 1. 点击"发布新帖"打开弹窗
+        // 打开弹窗
         openModalBtn.addEventListener('click', () => {
             modal.classList.add('active');
-            document.body.style.overflow = 'hidden'; // 防止背景滚动
+            document.body.style.overflow = 'hidden';
             
-            // 延迟加载弹窗内的Giscus部件
             if (!giscusWidgetLoaded) {
                 setTimeout(() => {
                     loadGiscusWidget();
@@ -309,58 +338,52 @@
             }
         });
         
-        // 2. 点击关闭按钮关闭弹窗
+        // 关闭弹窗
         closeModalBtn.addEventListener('click', closeModal);
         
-        // 3. 点击弹窗外部背景关闭弹窗
+        // 点击背景关闭
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
                 closeModal();
             }
         });
         
-        // 4. 按ESC键关闭弹窗
+        // ESC键关闭
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && modal.classList.contains('active')) {
                 closeModal();
             }
         });
         
-        // 关闭弹窗的函数
         function closeModal() {
             modal.classList.remove('active');
-            document.body.style.overflow = 'auto'; // 恢复背景滚动
+            document.body.style.overflow = 'auto';
         }
         
         // ==================== Giscus 加载逻辑 ====================
         
-        // 主展示区Giscus加载状态检查
+        // 检查主评论区加载状态
         function checkGiscusLoaded() {
             const giscusContainer = document.getElementById('giscus-container');
             const loadingElement = document.getElementById('loadingComments');
             
-            // 检查Giscus iframe是否已加载
             if (giscusContainer.querySelector('iframe')) {
-                // Giscus已加载，隐藏加载提示
                 giscusContainer.style.display = 'block';
                 loadingElement.style.display = 'none';
                 console.log('主评论区Giscus已加载');
             } else {
-                // 继续检查
                 setTimeout(checkGiscusLoaded, 1000);
             }
         }
         
-        // 加载弹窗内的Giscus部件（仅用于发布）
+        // 加载弹窗内的Giscus部件
         function loadGiscusWidget() {
             const giscusWidget = document.getElementById('giscus-widget');
             
-            // 如果已经加载过，则不再重复加载
             if (giscusWidget.querySelector('iframe')) {
                 return;
             }
             
-            // 创建Giscus脚本 - 用于弹窗发布（配置与主展示区相同，但输入框在上方）
             const script = document.createElement('script');
             script.src = "https://giscus.app/client.js";
             script.setAttribute("data-repo", "xffd-dpdns/xffd-dpdns.github.io");
@@ -371,7 +394,7 @@
             script.setAttribute("data-strict", "0");
             script.setAttribute("data-reactions-enabled", "1");
             script.setAttribute("data-emit-metadata", "1");
-            script.setAttribute("data-input-position", "top"); // 弹窗内输入框在上方
+            script.setAttribute("data-input-position", "top");
             script.setAttribute("data-theme", "light");
             script.setAttribute("data-lang", "zh-CN");
             script.setAttribute("data-loading", "lazy");
@@ -396,24 +419,8 @@
                     document.querySelectorAll('.page-btn').forEach(b => b.classList.remove('active'));
                     this.classList.add('active');
                     console.log('切换到第', this.textContent, '页');
-                    // 注意：实际分页由Giscus自动处理，这里只是UI示例
                 });
             });
-        });
-        
-        // 监听Giscus的ready事件（如果Giscus支持）
-        window.addEventListener('message', event => {
-            if (event.origin === 'https://giscus.app') {
-                const giscusData = event.data.giscus;
-                if (giscusData && giscusData.discussion) {
-                    console.log('Giscus讨论已加载:', giscusData.discussion);
-                    
-                    // 当新评论发布后，可以在这里触发更新
-                    if (giscusData.discussion.numComments > 0) {
-                        console.log('有新评论，总数:', giscusData.discussion.numComments);
-                    }
-                }
-            }
         });
     </script>
 </body>
